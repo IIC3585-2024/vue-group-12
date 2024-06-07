@@ -13,5 +13,9 @@ export default {
 <style scoped>
 footer {
   text-align: center;
+  justify-content: center;
+  align-items: center ;
+  align-self: auto;
+  background-color: #535353;
 }
 </style>

@@ -1,52 +1,65 @@
 <template>
-  <div id="app">
-    <div>
-      <SlideShow />
-    </div>
-    <FooterHome />
+  <div class="page-wrapper">
+    <main class="content">
+      <!-- Main content -->
+      <TopicPage />
+    </main>
+    <footer class="footer">
+      <!-- Footer content -->
+      This is the footer.
+    </footer>
   </div>
 </template>
 
 <script>
-import FooterHome from './components/FooterHome.vue'
-import SlideShow from './components/SlideShow.vue'
-
+import TopicPage from './components/TopicPage.vue';
 
 export default {
-  name: 'App',
   components: {
-    FooterHome,
-    SlideShow
+    TopicPage
   }
-}
+};
 </script>
 
-<style>
+<style scoped>
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  width: 100%;
+}
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Ensures page takes up full height of the viewport */
+
+  width: 100%;
+  background-color: #f9f9f9;
 }
 
 header {
-  background-color: #42b983;
-  color: white;
-  padding: 20px;
+  /* Optional header styling */
 }
 
-main {
-  margin: 20px;
+.content {
+  flex: 1 0 auto;
+  /* Optional content styling */
 }
 
-footer {
-  background-color: #35495e;
-  color: white;
-  padding: 10px;
-  position: fixed;
+.footer {
+  flex: 1 0 auto;
+  background-color: #f1f1f1;
+  /* padding: 10px; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  bottom: 0;
+  /* Ensures footer content is centered */
 }
 </style>
