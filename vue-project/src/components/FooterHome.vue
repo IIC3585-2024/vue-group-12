@@ -16,6 +16,7 @@ footer {
   justify-content: center;
   align-items: center ;
   align-self: auto;
-  background-color: #535353;
+  background-color: #2a2a2a;
+  color: white;
 }
 </style>

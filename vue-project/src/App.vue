@@ -2,7 +2,8 @@
   <div class="page-wrapper">
     <main class="content">
       <!-- Main content -->
-      <TopicPage />
+      <!-- <TopicPage /> -->
+       <CityPage />
     </main>
     <footer class="footer">
       <!-- Footer content -->
@@ -13,10 +14,12 @@
 
 <script>
 import TopicPage from './components/TopicPage.vue';
+import CityPage from './components/CityPage.vue';
 
 export default {
   components: {
-    TopicPage
+    TopicPage,
+    CityPage
   }
 };
 </script>
@@ -28,38 +31,26 @@ html, body {
   margin: 0;
 }
 
-#app {
-  height: 100%;
-  width: 100%;
-}
 .page-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* Ensures page takes up full height of the viewport */
-
-  width: 100%;
-  background-color: #f9f9f9;
-}
-
-header {
-  /* Optional header styling */
+  background-color: white;
 }
 
 .content {
-  flex: 1 0 auto;
+  flex: 1;
   /* Optional content styling */
 }
 
 .footer {
-  flex: 1 0 auto;
-  background-color: #f1f1f1;
-  /* padding: 10px; */
+  background-color: #3b3939;
+  color: rgb(111, 111, 111);
+  padding: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   /* Ensures footer content is centered */
 }
 </style>

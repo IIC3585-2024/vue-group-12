@@ -1,97 +1,71 @@
 <template>
     <div class="topics-container">
       <div class="topics-description">
-        <div class="horizontal-line" v-if="showLine"></div>
-        <div class="topics-title" v-if="showTitle">
+        <div class="horizontal-line"></div>
+        <div class="topics-title">
           <h1>Explora nuestro contenido</h1>
-          <p>estos son los principales temas de interés</p>
+          <p>Estos son los principales temas de interés</p>
         </div>
-        <div class="horizontal-line" v-if="showLine"></div>
+        <div class="horizontal-line"></div>
       </div>
       <div class="grid">
-        <a v-for="(image, i) in images" :key="i" href="/cities">
-          <div
-            role="button"
-            tabindex="0"
-            class="relative rounded overflow-hidden shadow-lg"
-            :class="[{ 'opacity-50': isHovered[i] }, { 'opacity-100': !isHovered[i] }]"
-            @mouseenter="setHovered(i, true)"
-            @focus="setHovered(i, true)"
-            @mouseleave="setHovered(i, false)"
-            @blur="setHovered(i, false)"
-            style="max-width: 12em; max-height: 13em"
-          >
-            <img class="w-full h-full transition-all duration-500" :src="image.src" :alt="image.alt">
+        <div v-for="(image, i) in images" :key="i" class="grid-item">
+          <a href="/cities">
             <div
-              class="absolute inset-0 flex items-center justify-center transition-all duration-500"
-              :class="{ 'opacity-100': isHovered[i], 'opacity-0': !isHovered[i] }"
+              role="button"
+              tabindex="0"
+              class="relative rounded overflow-hidden shadow-lg"
+              :class="{'opacity: 0': isHovered[i], 'opacity: 1': !isHovered[i]}"
+              @mouseenter="hoverIn(i)"
+              @focus="hoverIn(i)"
+              @mouseleave="hoverOut(i)"
+              @blur="hoverOut(i)"
             >
-              <p class="text-white text-sm bg-black p-4">{{ image.category }}</p>
+              <img style="max-width: fit-content; max-height: 200px;" :src="image.src" >
+            <p style="color: black; text-align: center;">{{ image.category }}</p>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
   </template>
   
   <script>
-  import { ref, onMounted } from 'vue';
+  import { ref } from 'vue';
   
   export default {
-    name: 'TopicPage',
     setup() {
       const images = ref([
-        { src: 'https://picsum.photos/200/300', alt: 'Sunset in the mountains', category: 'Foro' },
-        { src: 'https://picsum.photos/200/301', alt: 'Sunset in the mountains', category: 'Ciudades' },
-        { src: 'https://picsum.photos/200/302', alt: 'Sunset in the mountains', category: 'Your title here' },
-        { src: 'https://picsum.photos/200/303', alt: 'Sunset in the mountains', category: 'Your title here' },
-        { src: 'https://picsum.photos/200/304', alt: 'Sunset in the mountains', category: 'Your title here' },
-        { src: 'https://picsum.photos/200/305', alt: 'Sunset in the mountains', category: 'Your title here' }
+        { src: 'https://picsum.photos/200/300', category: 'Foro' },
+        { src: 'https://picsum.photos/200/301', category: 'Ciudades' },
+        { src: 'https://picsum.photos/200/302', category: 'Your title here' },
+        { src: 'https://picsum.photos/200/303', category: 'Your title here' },
+        { src: 'https://picsum.photos/200/304', category: 'Your title here' },
+        { src: 'https://picsum.photos/200/305', category: 'Your title here' }
       ]);
   
       const isHovered = ref(Array(images.value.length).fill(false));
-      const setHovered = (index, value) => {
-        isHovered.value[index] = value;
+  
+      const hoverIn = (index) => {
+        console.log('hoverIn', index);
+        isHovered.value[index] = true;
       };
   
-      const showLine = ref(false);
-      const showTitle = ref(false);
-  
-      onMounted(() => {
-        setTimeout(() => {
-          showLine.value = true;
-          showTitle.value = true;
-        }, 1000);
-      });
+      const hoverOut = (index) => {
+        isHovered.value[index] = false;
+      };
   
       return {
         images,
         isHovered,
-        setHovered,
-        showLine,
-        showTitle
+        hoverIn,
+        hoverOut
       };
     }
   };
   </script>
   
   <style scoped>
-  .topics-description {
-    display: flex;
-    align-items: center;
-    padding: 30px 0;
-    width: 100%;
-  }
-  .topics-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    padding: 20px;
-    width: 100%;
-    color: gray;
-  }
   .topics-container {
     display: flex;
     flex-direction: column;
@@ -100,12 +74,66 @@
     height: 100%;
     width: 100%;
   }
+  
+  .topics-description {
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+    width: 60%;
+    color: #000;
+  }
+  
+  .topics-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    color: #000;
+  }
+  
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap:40px;
-    padding: 80px;
+    grid-gap: 40px;
+    padding: 40px;
     margin-bottom: 5%;
+    width: 800px;
+    max-height: 800px;
+  }
+  
+  /* .grid-item {
+    max-width: 12em;
+    max-height: 13em;
+  } */
+  
+  .relative {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .relative img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s;
+  }
+  
+  .absolute {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  
+  .relative:hover .absolute,
+  .relative:focus .absolute {
+    opacity: 1;
   }
   </style>
   
