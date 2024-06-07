@@ -1,5 +1,5 @@
 <template>
-  <div class="slideshow" :style="{ backgroundImage: 'url(' + images[currentImage] + ')' }">
+  <div class="slideshow" :style="{ backgroundImage: 'url(' + images[currentImage] + ')' }" @click="redirectToCities">
     <div class="overlay"></div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
       setInterval(() => {
         this.currentImage = (this.currentImage + 1) % this.images.length;
       }, 10000);
+    },
+    redirectToCities() {
+      this.$router.push('/cities');
     }
   }
 }
@@ -33,24 +36,17 @@ export default {
 
 <style scoped>
 .slideshow {
-  position: absolute;
-  height: 100%; /* Adjust based on footer height */
+  position: fixed; /* Asegura que ocupe toda la pantalla */
+  top: 0;
+  left: 0;
   width: 100%;
-
+  height: 100%;
   background-size: cover;
   background-position: center;
   overflow: hidden;
   transition: background-image 1s ease-in-out;
+  z-index: -1; /* Asegura que esté detrás de otros elementos */
 }
-.background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
 
 .overlay {
   position: absolute;
@@ -58,6 +54,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según sea necesario */
 }
 </style>
