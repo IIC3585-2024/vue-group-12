@@ -1,29 +1,11 @@
 <template>
   <div id="app">
-    <div>
-      <SlideShow />
-    </div>
-
-    <main>
-      <h1>Welcome to Chile</h1>
-      <p>Discover the best cities in Chile</p>
-      <router-link to="/cities" class="btn btn-primary">View Cities</router-link>
-    </main>
-
-    <FooterHome />
+    <router-view></router-view> <!-- Aquí se renderizarán los componentes de las rutas -->
   </div>
 </template>
 
 <script>
-import FooterHome from './components/FooterHome.vue'
-import SlideShow from './components/SlideShow.vue'
-
-
 export default {
-  name: 'App',
-  components: {
-    FooterHome,
-    SlideShow
-  }
+  name: 'App'
 }
 </script>

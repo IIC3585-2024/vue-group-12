@@ -3,7 +3,6 @@ import HomeView from './views/HomeView.vue'
 import CitiesView from './views/CitiesView.vue'
 import AboutView from './views/AboutView.vue'
 
-
 const routes = [
   {
     path: "/",
@@ -21,7 +20,6 @@ const routes = [
     component: CitiesView
   }
 ];
-
 
 const router = createRouter({
   history: createMemoryHistory(),
