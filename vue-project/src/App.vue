@@ -3,6 +3,13 @@
     <div>
       <SlideShow />
     </div>
+
+    <main>
+      <h1>Welcome to Chile</h1>
+      <p>Discover the best cities in Chile</p>
+      <router-link to="/cities" class="btn btn-primary">View Cities</router-link>
+    </main>
+
     <FooterHome />
   </div>
 </template>
@@ -20,33 +27,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-header {
-  background-color: #42b983;
-  color: white;
-  padding: 20px;
-}
-
-main {
-  margin: 20px;
-}
-
-footer {
-  background-color: #35495e;
-  color: white;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
-</style>
